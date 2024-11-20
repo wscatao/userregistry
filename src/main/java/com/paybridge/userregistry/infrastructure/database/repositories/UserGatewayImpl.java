@@ -24,7 +24,13 @@ public class UserGatewayImpl implements UserGateway {
     }
 
     @Override
-    public Optional<User> findUserByEmailAndPassword(String email, String password) {
-        return Optional.empty();
+    public Optional<User> findUserById(Long userId) {
+        Optional<UserModel> userModelById = userRepositoryDatasource.findById(userId);
+        if(userModelById.isPresent()) {
+            User user = User.fromUserModel(userModelById.get());
+            return Optional.of(user);
+        } else {
+            return Optional.empty();
+        }
     }
 }

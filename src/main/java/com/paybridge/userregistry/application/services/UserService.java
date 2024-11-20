@@ -28,11 +28,13 @@ public class UserService implements UserUseCases {
 
     @Override
     public void deleteUser(User user) {
-
+        /**
+         * To be implemented
+         */
     }
 
     @Override
-    public Optional<User> getUser(String email, String password) {
-        return Optional.empty();
+    public Optional<User> getUser(Long userId) {
+        return userGateway.findUserById(userId);
     }
 }
