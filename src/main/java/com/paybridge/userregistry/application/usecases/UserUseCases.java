@@ -7,6 +7,6 @@ import java.util.Optional;
 public interface UserUseCases {
     void registerUser(User user);
     Boolean updateUser(Long userId, User user);
-    void deleteUser(User user);
+    Boolean deleteUser(Long userId);
     Optional<User> getUser(Long userId);
 }

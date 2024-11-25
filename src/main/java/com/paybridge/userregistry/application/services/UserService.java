@@ -27,10 +27,8 @@ public class UserService implements UserUseCases {
     }
 
     @Override
-    public void deleteUser(User user) {
-        /**
-         * To be implemented
-         */
+    public Boolean deleteUser(Long userId) {
+        return userGateway.deleteUser(userId);
     }
 
     @Override

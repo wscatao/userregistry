@@ -6,6 +6,7 @@ import com.paybridge.userregistry.presentation.dtos.CreateUserDTO;
 import com.paybridge.userregistry.presentation.dtos.UpdateUserDTO;
 import com.paybridge.userregistry.presentation.dtos.UserDto;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,6 +56,16 @@ public class UserController {
         User user = User.fromUpdateUserDTO(updateUserDTO);
         Boolean userUpdated = userUseCases.updateUser(userId, user);
         if (Boolean.TRUE.equals(userUpdated)) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
+        Boolean userDeleted = userUseCases.deleteUser(userId);
+        if(Boolean.TRUE.equals(userDeleted)) {
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();

@@ -11,4 +11,6 @@ public interface UserGateway {
     Optional<User> findUserById(Long userId);
 
     Boolean updateUser(Long userId, User user);
+
+    Boolean deleteUser(Long userId);
 }

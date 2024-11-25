@@ -26,7 +26,7 @@ public class UserGatewayImpl implements UserGateway {
     @Override
     public Optional<User> findUserById(Long userId) {
         Optional<UserModel> userModelById = userRepositoryDatasource.findById(userId);
-        if(userModelById.isPresent()) {
+        if (userModelById.isPresent()) {
             User user = User.fromUserModel(userModelById.get());
             return Optional.of(user);
         } else {
@@ -37,7 +37,7 @@ public class UserGatewayImpl implements UserGateway {
     @Override
     public Boolean updateUser(Long userId, User user) {
         Optional<UserModel> userModelById = userRepositoryDatasource.findById(userId);
-        if(userModelById.isPresent()) {
+        if (userModelById.isPresent()) {
             UserModel userModel = userModelById.get();
             Optional.ofNullable(user.getFullName()).ifPresent(userModel::setFullName);
             Optional.ofNullable(user.getPhone()).ifPresent(userModel::setPhone);
@@ -49,6 +49,18 @@ public class UserGatewayImpl implements UserGateway {
             Optional.ofNullable(user.getPreferredCurrency()).ifPresent(userModel::setPreferredCurrency);
             Optional.ofNullable(user.getPreferredNotificationMethod()).ifPresent(userModel::setPreferredNotificationMethod);
             userRepositoryDatasource.save(userModel);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public Boolean deleteUser(Long userId) {
+        Optional<UserModel> userById = userRepositoryDatasource.findById(userId);
+        if (userById.isPresent()) {
+            UserModel userModel = userById.get();
+            userRepositoryDatasource.delete(userModel);
             return true;
         } else {
             return false;
