@@ -1,4 +1,4 @@
-package com.paybridge.userregistry.presentation.dtos;
+package com.paybridge.userregistry.presentation.dtos.user;
 
 import java.time.LocalDate;
 

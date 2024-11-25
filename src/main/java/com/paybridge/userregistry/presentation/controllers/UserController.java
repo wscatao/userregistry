@@ -2,9 +2,9 @@ package com.paybridge.userregistry.presentation.controllers;
 
 import com.paybridge.userregistry.application.usecases.UserUseCases;
 import com.paybridge.userregistry.domain.entities.User;
-import com.paybridge.userregistry.presentation.dtos.CreateUserDTO;
-import com.paybridge.userregistry.presentation.dtos.UpdateUserDTO;
-import com.paybridge.userregistry.presentation.dtos.UserDto;
+import com.paybridge.userregistry.presentation.dtos.user.CreateUserDTO;
+import com.paybridge.userregistry.presentation.dtos.user.UpdateUserDTO;
+import com.paybridge.userregistry.presentation.dtos.user.UserDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

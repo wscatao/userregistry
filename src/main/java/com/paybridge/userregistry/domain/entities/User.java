@@ -1,9 +1,9 @@
 package com.paybridge.userregistry.domain.entities;
 
 import com.paybridge.userregistry.infrastructure.database.model.UserModel;
-import com.paybridge.userregistry.presentation.dtos.CreateUserDTO;
-import com.paybridge.userregistry.presentation.dtos.UpdateUserDTO;
-import com.paybridge.userregistry.presentation.dtos.UserDto;
+import com.paybridge.userregistry.presentation.dtos.user.CreateUserDTO;
+import com.paybridge.userregistry.presentation.dtos.user.UpdateUserDTO;
+import com.paybridge.userregistry.presentation.dtos.user.UserDto;
 import lombok.Getter;
 import lombok.Setter;
 
