@@ -5,6 +5,10 @@ import com.paybridge.userregistry.domain.entities.User;
 import java.util.Optional;
 
 public interface UserGateway {
-    void registerUser(User user);
+
+    void saveUser(User user);
+
     Optional<User> findUserById(Long userId);
+
+    Boolean updateUser(Long userId, User user);
 }

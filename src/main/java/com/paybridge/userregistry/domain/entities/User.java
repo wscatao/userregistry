@@ -2,11 +2,13 @@ package com.paybridge.userregistry.domain.entities;
 
 import com.paybridge.userregistry.infrastructure.database.model.UserModel;
 import com.paybridge.userregistry.presentation.dtos.CreateUserDTO;
+import com.paybridge.userregistry.presentation.dtos.UpdateUserDTO;
 import com.paybridge.userregistry.presentation.dtos.UserDto;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Getter
 @Setter
@@ -74,6 +76,22 @@ public class User {
         user.setPreferredCurrency(userModel.getPreferredCurrency());
         user.setPreferredNotificationMethod(userModel.getPreferredNotificationMethod());
         user.setBirthDate(userModel.getBirthDate());
+        return user;
+    }
+
+    public static User fromUpdateUserDTO(UpdateUserDTO updateUserDTO) {
+        User user = new User();
+
+        Optional.ofNullable(updateUserDTO.fullName()).ifPresent(user::setFullName);
+        Optional.ofNullable(updateUserDTO.phone()).ifPresent(user::setPhone);
+        Optional.ofNullable(updateUserDTO.address()).ifPresent(user::setAddress);
+        Optional.ofNullable(updateUserDTO.city()).ifPresent(user::setCity);
+        Optional.ofNullable(updateUserDTO.state()).ifPresent(user::setState);
+        Optional.ofNullable(updateUserDTO.zipCode()).ifPresent(user::setZipCode);
+        Optional.ofNullable(updateUserDTO.country()).ifPresent(user::setCountry);
+        Optional.ofNullable(updateUserDTO.preferredCurrency()).ifPresent(user::setPreferredCurrency);
+        Optional.ofNullable(updateUserDTO.preferredNotificationMethod()).ifPresent(user::setPreferredNotificationMethod);
+
         return user;
     }
 }

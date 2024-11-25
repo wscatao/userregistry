@@ -18,12 +18,12 @@ public class UserService implements UserUseCases {
 
     @Override
     public void registerUser(User user) {
-        userGateway.registerUser(user);
+        userGateway.saveUser(user);
     }
 
     @Override
-    public User updateUser(User user) {
-        return null;
+    public Boolean updateUser(Long userId, User user) {
+        return userGateway.updateUser(userId, user);
     }
 
     @Override

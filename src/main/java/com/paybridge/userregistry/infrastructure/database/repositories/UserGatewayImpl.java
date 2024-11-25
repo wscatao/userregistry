@@ -18,7 +18,7 @@ public class UserGatewayImpl implements UserGateway {
     }
 
     @Override
-    public void registerUser(User user) {
+    public void saveUser(User user) {
         UserModel userModel = UserModel.toUserModel(user);
         userRepositoryDatasource.save(userModel);
     }
@@ -31,6 +31,27 @@ public class UserGatewayImpl implements UserGateway {
             return Optional.of(user);
         } else {
             return Optional.empty();
+        }
+    }
+
+    @Override
+    public Boolean updateUser(Long userId, User user) {
+        Optional<UserModel> userModelById = userRepositoryDatasource.findById(userId);
+        if(userModelById.isPresent()) {
+            UserModel userModel = userModelById.get();
+            Optional.ofNullable(user.getFullName()).ifPresent(userModel::setFullName);
+            Optional.ofNullable(user.getPhone()).ifPresent(userModel::setPhone);
+            Optional.ofNullable(user.getAddress()).ifPresent(userModel::setAddress);
+            Optional.ofNullable(user.getCity()).ifPresent(userModel::setCity);
+            Optional.ofNullable(user.getState()).ifPresent(userModel::setState);
+            Optional.ofNullable(user.getZipCode()).ifPresent(userModel::setZipCode);
+            Optional.ofNullable(user.getCountry()).ifPresent(userModel::setCountry);
+            Optional.ofNullable(user.getPreferredCurrency()).ifPresent(userModel::setPreferredCurrency);
+            Optional.ofNullable(user.getPreferredNotificationMethod()).ifPresent(userModel::setPreferredNotificationMethod);
+            userRepositoryDatasource.save(userModel);
+            return true;
+        } else {
+            return false;
         }
     }
 }
